@@ -9,7 +9,13 @@ project ( luabind C CXX )
 cmake_minimum_required ( VERSION 2.8 )
 
 # Include directories
+#include_directories ( ${Boost_INCLUDE_DIRS} ${LUA_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} )
+set(Boost_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../../include)
+set(LUA_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../include/lua5.1)
 include_directories ( ${Boost_INCLUDE_DIRS} ${LUA_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} )
+message("${Boost_INCLUDE_DIRS}")
+message("${LUA_INCLUDE_DIR}")
+message("${CMAKE_CURRENT_SOURCE_DIR}")
 
 # Link directories
 #~ 	LINK_DIRECTORIES(${BOOST_LIBRARY_DIRS})
@@ -17,7 +23,7 @@ include_directories ( ${Boost_INCLUDE_DIRS} ${LUA_INCLUDE_DIR} ${CMAKE_CURRENT_S
 # Build the library
 file ( GLOB LUABIND_SRC "src/*.cpp" )
 
-add_definitions ( -DLUABIND_BUILDING )
+#add_definitions ( -DLUABIND_BUILDING )
 
 add_library ( luabind ${LUABIND_SRC} )
 target_link_libraries ( luabind ${LUA_LIBRARIES} )
